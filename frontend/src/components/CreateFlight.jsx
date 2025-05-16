@@ -37,14 +37,14 @@ const CreateFlight = ({ backendURL, refreshFlight }) => {
             {/* Update to input to be datetime */}
             <label htmlFor="create_depature_time">Depature Time </label>
             <input
-                type="text"
+                type="datetime-local"
                 name="create_depature_time"
                 id="create_depature_time"
             />
             
             <label htmlFor="create_arrival_time">Arrival Time </label>
             <input
-                type="text"
+                type="datetime-local"
                 name="create_arrival_time"
                 id="create_arrival_time"
             />

@@ -8,11 +8,19 @@ const db = require('./database/db-connector');
 const express = require('express');
 const app = express();
 
+// ########################################
+// ########## HELPER FUNCTIONS
+
+// Helper function to format dates
+function formatDate(dateString) {
+    if (!dateString) return null;
+    return new Date(dateString).toISOString().split('T')[0];
+}
+
 // Middleware
 const cors = require('cors');
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests
-
 
 const PORT = 6453;
 
@@ -36,13 +44,19 @@ app.get('/destinations', async (req, res) => {
 });
 
 // ---- CUSTOMERS ROUTES ----
-app.get('/customers', async (req, res) => {
+app.get('/debug', async (req, res) => {
     try {
         const display_customers = `SELECT * FROM Customers;`;
-
         const [customers] = await db.query(display_customers);
-
-        res.status(200).json({ customers });
+        
+        // Format the date fields
+        const formattedCustomers = customers.map(customer => ({
+            ...customer,
+            passportExpiration: formatDate(customer.passportExpiration),
+            dateOfBirth: formatDate(customer.dateOfBirth)
+        }));
+ 
+        res.status(200).json({ customers: formattedCustomers });
     } catch (error) {
         console.error("Error executing queries:", error);
         res.status(500).send("An error occurred while executing the database queries.");
@@ -53,10 +67,17 @@ app.get('/customers', async (req, res) => {
 app.get('/passengers', async (req, res) => {
     try {
         const display_passengers = `SELECT * FROM Passengers;`;
-
+ 
         const [passengers] = await db.query(display_passengers);
-
-        res.status(200).json({ passengers });
+        
+        // Format the date fields
+        const formattedPassengers = passengers.map(passenger => ({
+            ...passenger,
+            passportExpiration: formatDate(passenger.passportExpiration),
+            dateOfBirth: formatDate(passenger.dateOfBirth)
+        }));
+ 
+        res.status(200).json({ passengers: formattedPassengers });
     } catch (error) {
         console.error("Error executing queries:", error);
         res.status(500).send("An error occurred while executing the database queries.");

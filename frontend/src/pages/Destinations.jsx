@@ -50,7 +50,10 @@ function Destinations({ backendURL }) {
 
                 <tbody>
                     {destinations.map((destination, index) => (
-                        <TableRow key={index} rowObject={destination} backendURL={backendURL} refreshDestination={getData}/>
+                        <TableRow key={index} rowObject={{
+                            ...destination,
+                            visaRequired: destination.visaRequired === 1 ? 'Yes' : 'No'
+                        }} backendURL={backendURL} refreshDestination={getData}/>
                     ))}
 
                 </tbody>

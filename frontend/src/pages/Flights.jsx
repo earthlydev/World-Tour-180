@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import TableRow from '../components/TableRow';
-import CreateDestination from '../components/CreateDestination';
 import CreateFlight from '../components/CreateFlight';
 import UpdateFlight from '../components/UpdateFlight';
 
@@ -54,11 +53,11 @@ function Flights({ backendURL }) {
                     flights.map((flight, index) => (<TableRow key={index} rowObject={{
                         ...flight,
                         departureTime: new Date(flight.departureTime).toLocaleString([], {
-                        month: 'long',  // "Jun"
-                        day: 'numeric',  // "10"
-                        year: 'numeric', // "2025" (optional)
-                        hour: '2-digit', // "08"
-                        minute: '2-digit' // "45"
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit' 
                     }),
                     arrivalTime: new Date(flight.arrivalTime).toLocaleString([], {
                         month: 'long',

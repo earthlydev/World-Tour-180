@@ -49,14 +49,14 @@ const UpdateFlight = ({ flights, backendURL, refreshFlight }) => {
             {/* Update to input to be datetime */}
             <label htmlFor="update_depature_time">Depature Time </label>
             <input
-                type="text"
+                type="datetime-local"
                 name="update_depature_time"
                 id="update_depature_time"
             />
             
             <label htmlFor="update_arrival_time">Arrival Time </label>
             <input
-                type="text"
+                type="datetime-local"
                 name="update_arrival_time"
                 id="update_arrival_time"
             />
