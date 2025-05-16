@@ -130,12 +130,146 @@ app.get('/itinerarydestinations', async (req, res) => {
 // ---- ITINERARY PASSENGERS ROUTES ----
 app.get('/itinerarypassengers', async (req, res) => {
     try {
-        const display_ip = `SELECT * FROM ItineraryPassengers`;
+        const display_ip = `SELECT ip.*, i.title AS itineraryTitle, 
+                          CONCAT(p.firstName, ' ', p.lastName) AS passengerName 
+                          FROM ItineraryPassengers ip
+                          JOIN Itineraries i ON ip.itineraryID = i.itineraryID
+                          JOIN Passengers p ON ip.passengerID = p.passengerID`;
 
         const [itinerarypassengers] = await db.query(display_ip);
 
         res.status(200).json({itinerarypassengers}); 
 
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// Get a specific itinerary passenger relationship
+app.get('/itinerarypassengers/:ipID', async (req, res) => {
+    try {
+        const { ipID } = req.params;
+        const query = `SELECT ip.*, i.title AS itineraryTitle, 
+                      CONCAT(p.firstName, ' ', p.lastName) AS passengerName 
+                      FROM ItineraryPassengers ip
+                      JOIN Itineraries i ON ip.itineraryID = i.itineraryID
+                      JOIN Passengers p ON ip.passengerID = p.passengerID
+                      WHERE ip.ipID = ?`;
+        
+        const [itineraryPassenger] = await db.query(query, [ipID]);
+        
+        if (itineraryPassenger.length === 0) {
+            return res.status(404).json({ error: 'Itinerary passenger relationship not found' });
+        }
+        
+        res.status(200).json({ itineraryPassenger: itineraryPassenger[0] });
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// Create a new itinerary passenger relationship
+app.post('/itinerarypassengers', async (req, res) => {
+    try {
+        const { itineraryID, passengerID } = req.body;
+        
+        // Validate required fields
+        if (!itineraryID || !passengerID) {
+            return res.status(400).json({ 
+                error: 'Itinerary ID and Passenger ID are required'
+            });
+        }
+        
+        // Optional: Check if relationship already exists
+        const checkQuery = `SELECT COUNT(*) as count
+                          FROM ItineraryPassengers
+                          WHERE itineraryID = ? AND passengerID = ?`;
+        
+        const [checkResult] = await db.query(checkQuery, [itineraryID, passengerID]);
+        
+        if (checkResult[0].count > 0) {
+            return res.status(409).json({ 
+                error: 'This passenger is already linked to this itinerary'
+            });
+        }
+        
+        // Insert new relationship
+        const insertQuery = `INSERT INTO ItineraryPassengers (itineraryID, passengerID) 
+                           VALUES (?, ?)`;
+        
+        const [result] = await db.query(insertQuery, [itineraryID, passengerID]);
+        
+        res.status(201).json({ 
+            ipID: result.insertId,
+            itineraryID, 
+            passengerID,
+            message: 'Itinerary passenger relationship created successfully'
+        });
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// Update an existing itinerary passenger relationship
+app.put('/itinerarypassengers/:ipID', async (req, res) => {
+    try {
+        const { ipID } = req.params;
+        const { itineraryID, passengerID } = req.body;
+        
+        // Validate required fields
+        if (!itineraryID || !passengerID) {
+            return res.status(400).json({ 
+                error: 'Itinerary ID and Passenger ID are required'
+            });
+        }
+        
+        // Update the relationship
+        const updateQuery = `UPDATE ItineraryPassengers
+                           SET itineraryID = ?, passengerID = ?
+                           WHERE ipID = ?`;
+        
+        const [result] = await db.query(updateQuery, [itineraryID, passengerID, ipID]);
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ 
+                error: 'Itinerary passenger relationship not found'
+            });
+        }
+        
+        res.status(200).json({ 
+            ipID,
+            itineraryID,
+            passengerID,
+            message: 'Itinerary passenger relationship updated successfully'
+        });
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// Delete an itinerary passenger relationship
+app.delete('/itinerarypassengers/:ipID', async (req, res) => {
+    try {
+        const { ipID } = req.params;
+        
+        const deleteQuery = `DELETE FROM ItineraryPassengers 
+                           WHERE ipID = ?`;
+        
+        const [result] = await db.query(deleteQuery, [ipID]);
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ 
+                error: 'Itinerary passenger relationship not found'
+            });
+        }
+        
+        res.status(200).json({ 
+            message: 'Itinerary passenger relationship deleted successfully'
+        });
     } catch (error) {
         console.error("Error executing queries:", error);
         res.status(500).send("An error occurred while executing the database queries.");
