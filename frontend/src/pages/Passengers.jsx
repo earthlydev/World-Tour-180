@@ -8,6 +8,12 @@ function Passengers({ backendURL }) {
     const [passengers, setPassengers] = useState([]);
     const [customers, setCustomers] = useState([]);
 
+    // Helper function to format dates consistently (same as server.js)
+    function formatDate(dateString) {
+        if (!dateString) return null;
+        return new Date(dateString).toISOString().split('T')[0];
+    }
+
     const getData = async function () {
         try {
             // Make GET requests to the backend
@@ -18,8 +24,15 @@ function Passengers({ backendURL }) {
             const {passengers} = await passengersResponse.json();
             const {customers} = await customersResponse.json();
     
-            // Update state with the response data
-            setPassengers(passengers);
+            // Format date fields in passengers data
+            const formattedPassengers = passengers.map(passenger => ({
+                ...passenger,
+                passportExpiration: formatDate(passenger.passportExpiration),
+                dateOfBirth: formatDate(passenger.dateOfBirth)
+            }));
+
+            // Update state with the formatted data
+            setPassengers(formattedPassengers);
             setCustomers(customers);
             
         } catch (error) {
