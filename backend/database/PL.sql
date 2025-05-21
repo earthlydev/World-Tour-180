@@ -10,9 +10,9 @@
     -- https://canvas.oregonstate.edu/courses/1999601/pages/exploration-pl-slash-sql-part-1-sp-view-and-function?module_item_id=25352958
 -- --------------------------------------------------------------------------------
 
--- --------------------------------------------------------------------------------
+-- #############################
 -- RESET Database
--- --------------------------------------------------------------------------------
+-- #############################
 DROP PROCEDURE IF EXISTS sp_load_worldtour180db;
 DELIMITER //
 CREATE PROCEDURE sp_load_worldtour180db()
@@ -271,3 +271,99 @@ BEGIN
     COMMIT;  
 END //
 DELIMITER ;
+
+-- #############################
+-- DELETE customers
+-- #############################
+DROP PROCEDURE IF EXISTS sp_DeleteCustomer;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeleteCustomer(IN c_id INT)
+BEGIN
+    DECLARE error_message VARCHAR(255); 
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+        DELETE FROM Customers WHERE customerID = c_id;
+
+        IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('No matching record found in customers for id: ', c_id);
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+    IF ROW_COUNT() > 0 THEN 
+        SELECT CONCAT ('Successfully deleted customer with ID: ', c_id, ' and all related records') AS message;
+    END IF;
+    
+END //
+DELIMITER ;
+
+-- #############################
+-- DELETE passengers
+-- #############################
+DROP PROCEDURE IF EXISTS sp_DeletePassenger;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeletePassenger(IN p_id INT)
+BEGIN
+    DECLARE error_message VARCHAR(255); 
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+    DELETE FROM Passengers WHERE passengerID = p_id;
+    
+    IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('No matching record found in passengers for id: ', p_id);
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+    
+    IF ROW_COUNT() > 0 THEN 
+        SELECT CONCAT ('Successfully deleted passenger with ID: ', p_id, ' and all related records') AS message;
+    END IF;
+END //
+DELIMITER ;   
+
+-- #############################
+-- DELETE agents
+-- #############################
+DROP PROCEDURE IF EXISTS sp_DeleteAgent;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeleteAgent(IN a_id INT)
+BEGIN
+    DECLARE error_message VARCHAR(255); 
+
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+    DELETE FROM Agents WHERE agentID = a_id;
+    
+    IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('No matching record found in agents for id: ', a_id);
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+    
+    IF ROW_COUNT() > 0 THEN 
+        SELECT CONCAT ('Successfully deleted agent with ID: ', a_id, ' and all related records') AS message;
+    END IF;
+END //
+DELIMITER ;   
