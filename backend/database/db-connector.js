@@ -9,7 +9,8 @@ const pool = mysql.createPool({
     host              : 'classmysql.engr.oregonstate.edu',
     user              : 'cs340_arizalaj',
     password          : '4691',
-    database          : 'cs340_arizalaj'
+    database          : 'cs340_arizalaj',
+    multipleStatements: true // Enable multiple statements for the reset feature
 }).promise(); // This makes it so we can use async / await rather than callbacks
 // Export it for use in our application
 
