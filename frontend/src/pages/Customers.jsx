@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import TableRow from '../components/TableRow';
 import CreateCustomer from '../components/CreateCustomer';
 import UpdateCustomer from '../components/UpdateCustomer';
+import CustomerTableRow from '../components/CustomerTablerRow';
 
 function Customers({ backendURL }) {
     // Set up state variables to store and display the backend response
@@ -58,7 +58,7 @@ function Customers({ backendURL }) {
 
                 <tbody>
                     {customers.map((customer, index) => (
-                        <TableRow key={index} rowObject={customer} backendURL={backendURL} refreshDestination={getData} />
+                        <CustomerTableRow key={index} rowObject={customer} backendURL={backendURL} refreshCustomer={getData} />
                     ))}
                 </tbody>
             </table>

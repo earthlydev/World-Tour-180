@@ -1,3 +1,6 @@
+// Citation
+// https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -18,14 +21,15 @@ import Flights from './pages/Flights';
 import Navigation from './components/Navigation';
 
 // Define the backend port and URL for API requests
-const backendPort = 6453;  // Use the port you assigned to the backend server, this would normally go in a .env file
+const backendPort = 6453;
+
 const backendURL = `http://classwork.engr.oregonstate.edu:${backendPort}`;
 
 function App() {
 
     return (
         <>
-            <Navigation />
+            <Navigation backendURL={backendURL} />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/customers" element={<Customers backendURL={backendURL} />} />

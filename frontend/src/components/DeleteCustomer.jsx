@@ -1,8 +1,11 @@
+// Citation for code below
+// https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
 const DeleteCustomer = ({ rowObject, backendURL, refreshCustomer }) => {
     const fullname = rowObject.firstName + ' ' + rowObject.lastName;
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault(); 
 
         const formData = {
             delete_customer_id: rowObject.customerID,
@@ -17,7 +20,7 @@ const DeleteCustomer = ({ rowObject, backendURL, refreshCustomer }) => {
             });
 
             if (response.ok) {
-                console.log("Person deleted successfully.");
+                console.log("Customer deleted successfully.");
                 refreshCustomer();
             } else {
                 console.error("Error deleting customer.");
@@ -30,7 +33,7 @@ const DeleteCustomer = ({ rowObject, backendURL, refreshCustomer }) => {
 
     return (
         <td>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <button type='submit'>
                     Delete
                 </button>

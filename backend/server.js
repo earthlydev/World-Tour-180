@@ -1,8 +1,15 @@
+// Citation
+// https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+
 // ########################################
 // ########## SETUP
 
 // Database
 const db = require('./database/db-connector');
+
+// File system module to read SQL file
+const fs = require('fs');
+const path = require('path');
 
 // Express
 const express = require('express');
@@ -26,6 +33,38 @@ const PORT = 6453;
 
 // ########################################
 // ########## ROUTE HANDLERS
+
+// RESET DATABASE ROUTE
+app.post('/reset', async (req, res) => {
+    try {
+        // Find the path to the DDL.SQL file in the database directory
+        const ddlPath = path.join(__dirname, 'database', 'DDL.SQL');
+        console.log('Looking for DDL.SQL at:', ddlPath);
+        
+        // Read the DDL.SQL file
+        const ddlScript = fs.readFileSync(ddlPath, 'utf8');
+        
+        // Split the script by semicolons to get individual SQL statements
+        const statements = ddlScript
+            .split(';')
+            .filter(statement => statement.trim() !== '');
+        
+        // Execute each statement sequentially
+        for (const statement of statements) {
+            if (statement.trim()) {
+                await db.query(statement);
+            }
+        }
+        
+        res.status(200).json({ message: 'Database reset successfully' });
+    } catch (error) {
+        console.error("Error resetting database:", error);
+        res.status(500).json({ 
+            error: "An error occurred while resetting the database",
+            details: error.message
+        });
+    }
+});
 
 // READ ROUTES
 // ---- DESTINATIONS ROUTES ----
@@ -269,6 +308,57 @@ app.delete('/itinerarypassengers/:ipID', async (req, res) => {
         
         res.status(200).json({ 
             message: 'Itinerary passenger relationship deleted successfully'
+        });
+    } catch (error) {
+        console.error("Error executing queries:", error);
+        res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// DELETE ROUTES
+// Delete a customer
+app.post('/customers/delete', async function (req, res) {
+    try {
+        // Parse frontend form information
+        let data = req.body;
+
+        // Create and execute our query
+        // Using parameterized queries (Prevents SQL injection attacks)
+        const query1 = `CALL sp_DeleteCustomer(?);`;
+        await db.query(query1, [data.delete_customer_id]);
+
+        console.log(`DELETE customers. ID: ${data.delete_customer_id} ` +
+            `Name: ${data.delete_customer_name}`
+        );
+
+        // Redirect the user to the updated webpage data
+        res.redirect('/customers');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        // Send a generic error message to the browser
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// Adds a simple delete endpoint for Customers to demo database changes
+app.delete('/customers/:customerID', async (req, res) => {
+    try {
+        const { customerID } = req.params;
+        
+        const deleteQuery = `DELETE FROM Customers WHERE customerID = ?`;
+        
+        const [result] = await db.query(deleteQuery, [customerID]);
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ 
+                error: 'Customer not found'
+            });
+        }
+        
+        res.status(200).json({ 
+            message: 'Customer deleted successfully'
         });
     } catch (error) {
         console.error("Error executing queries:", error);

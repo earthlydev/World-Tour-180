@@ -1,3 +1,6 @@
+// Citation for code below
+// https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
 const DeleteAgent = ({ rowObject, backendURL, refreshAgent }) => {
     const fullname = rowObject.firstName + ' ' + rowObject.lastName;
 
