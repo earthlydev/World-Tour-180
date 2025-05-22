@@ -1,4 +1,4 @@
-const UpdateFlight = ({ flights, backendURL, refreshFlight }) => {
+const UpdateFlight = ({ flights, itineraries, airlines ,airports, backendURL, refreshFlight }) => {
     return (
         <>
         <h2>Update a Flight</h2>
@@ -13,6 +13,31 @@ const UpdateFlight = ({ flights, backendURL, refreshFlight }) => {
                 {flights.map((flight) => (
                     <option key={flight.id} value={flight.id}>
                        {flight.bookingReferenceNum}
+                    </option>
+                ))}
+            </select>
+            <label htmlFor="select_itinerary">Select an Itinerary </label>
+            <select
+                name="select_itinerary"
+                id="select_itinerary"
+            >
+                <option value="">Select an Itinerary</option>
+                {itineraries.map((itinerary) => (
+                    <option key={itinerary.id} value={itinerary.id}>
+                       {itinerary.title}
+                    </option>
+                ))}
+            </select>
+
+            <label htmlFor="select_airline">Select an Airline </label>
+            <select
+                name="select_airline"
+                id="select_airline"
+            >
+                <option value="">Select an Airline</option>
+                {airlines.map((airline) => (
+                    <option key={airline.airlineID} value={airline.airlineID}>
+                       {airline.airlineName}
                     </option>
                 ))}
             </select>
@@ -31,22 +56,32 @@ const UpdateFlight = ({ flights, backendURL, refreshFlight }) => {
                 id="update_flight_number"
             />
             
-            {/* Update to select from updated airports */}
-            <label htmlFor="update_depature_airport">Departure Airport </label>
-            <input
-                type="text"
-                name="update_depature_airport"
-                id="update_depature_airport"
-            />
+            <label htmlFor="select_departure_airport">Select The Depature Airport </label>
+            <select
+                name="select_departure_airport"
+                id="select_departure_airport"
+            >
+                <option value="">Select an Airport</option>
+                {airports.map((airport) => (
+                    <option key={airport.airportID} value={airport.airportID}>
+                       {airport.airportName}
+                    </option>
+                ))}
+            </select>
 
-            <label htmlFor="update_arrival_airport">Arrival Airport </label>
-            <input
-                type="text"
-                name="update_arrival_airport"
-                id="update_arrival_airport"
-            />
+            <label htmlFor="select_departure_airport">Select The Arrival Airport </label>
+            <select
+                name="select_departure_airport"
+                id="select_departure_airport"
+            >
+                <option value="">Select an Airport</option>
+                {airports.map((airport) => (
+                    <option key={airport.airportID} value={airport.airportID}>
+                       {airport.airportName}
+                    </option>
+                ))}
+            </select>
             
-            {/* Update to input to be datetime */}
             <label htmlFor="update_depature_time">Depature Time </label>
             <input
                 type="datetime-local"

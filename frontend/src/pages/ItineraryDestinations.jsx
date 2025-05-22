@@ -23,7 +23,6 @@ function ItineraryDestinations({ backendURL }) {
             setItineraries(itineraries);
             setDestinations(destinations);
 
-            // Create lookup objects and combine data
             const itineraryMap = {};
             itineraries.forEach(it => {
                 itineraryMap[it.itineraryID] = it;

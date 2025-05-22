@@ -6,14 +6,27 @@ import UpdateFlight from '../components/UpdateFlight';
 
 function Flights({ backendURL }) {
     const [flights, setFlights] = useState([]);
+    const [itineraries, setItineraries] = useState([]);
+    const [airlines, setAirlines] = useState([]);
+    const [airports, setAirports] = useState([]);
 
     const getData = async function () {
         try {
             const response = await fetch(backendURL + '/flights');
+            const itiRes = await fetch(backendURL + '/itineraries');
+            const airlinesRes = await fetch(backendURL + '/airlines');
+            const airportsRes = await fetch(backendURL + '/airports');
 
             const {flights} = await response.json();
+            const { itineraries } = await itiRes.json();
+            const { airlines } = await airlinesRes.json();
+            const { airports } = await airportsRes.json();
 
             setFlights(flights);
+            setItineraries(itineraries);
+            setAirlines(airlines);
+            setAirports(airports);
+
         } catch (error) {
             console.log(error);
         }
@@ -70,8 +83,20 @@ function Flights({ backendURL }) {
                 </tbody>
             </table>
 
-            <CreateFlight backendURL={backendURL} refreshFlight={getData} />
-            <UpdateFlight flights={flights} backendURL={backendURL} refreshFlight={getData} />
+            <CreateFlight
+                itineraries={itineraries}
+                airlines={airlines}
+                airports={airports} 
+                backendURL={backendURL} refreshFlight={getData} 
+            />
+            <UpdateFlight 
+                flights={flights}
+                itineraries={itineraries}
+                airlines={airlines}
+                airports={airports} 
+                backendURL={backendURL} 
+                refreshFlight={getData} 
+            />
         </>
     )
 }
