@@ -7,16 +7,16 @@ const DeleteCustomer = ({ rowObject, backendURL, refreshCustomer }) => {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
 
-        const formData = {
-            delete_customer_id: rowObject.customerID,
-            delete_customer_name: fullname,
-        };
+        if (!window.confirm(`Are you sure you want to delete ${fullname}?`)) {
+            return;
+        } 
 
         try {
-            const response = await fetch(backendURL + '/customers/delete', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+            const response = await fetch(`${backendURL}/customers/${rowObject.customerID}`, {
+                method: 'DELETE',
+                headers: {
+                'Content-Type': 'application/json',
+                }
             });
 
             if (response.ok) {
@@ -24,9 +24,15 @@ const DeleteCustomer = ({ rowObject, backendURL, refreshCustomer }) => {
                 refreshCustomer();
             } else {
                 console.error("Error deleting customer.");
+                if (response.status === 404) {
+                    alert('Customer not found');
+                } else {
+                    alert('Error deleting customer');
+                }
             }
         } catch (error) {
-            console.error('Error during form submission:', error);
+            console.error('Error during deletion:', error);
+            alert('Network error during deletion');
         }
     };
 

@@ -14,4 +14,5 @@ const pool = mysql.createPool({
 }).promise(); // This makes it so we can use async / await rather than callbacks
 // Export it for use in our application
 
+
 module.exports = pool;

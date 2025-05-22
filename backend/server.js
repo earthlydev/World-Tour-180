@@ -29,7 +29,7 @@ const cors = require('cors');
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests
 
-const PORT = 6453;
+const PORT = 4398; // 6453
 
 // ########################################
 // ########## ROUTE HANDLERS
@@ -83,7 +83,7 @@ app.get('/destinations', async (req, res) => {
 });
 
 // ---- CUSTOMERS ROUTES ----
-app.get('/debug', async (req, res) => {
+app.get('/customers', async (req, res) => {
     try {
         const display_customers = `SELECT * FROM Customers;`;
         const [customers] = await db.query(display_customers);
@@ -316,32 +316,6 @@ app.delete('/itinerarypassengers/:ipID', async (req, res) => {
 });
 
 // DELETE ROUTES
-// Delete a customer
-app.post('/customers/delete', async function (req, res) {
-    try {
-        // Parse frontend form information
-        let data = req.body;
-
-        // Create and execute our query
-        // Using parameterized queries (Prevents SQL injection attacks)
-        const query1 = `CALL sp_DeleteCustomer(?);`;
-        await db.query(query1, [data.delete_customer_id]);
-
-        console.log(`DELETE customers. ID: ${data.delete_customer_id} ` +
-            `Name: ${data.delete_customer_name}`
-        );
-
-        // Redirect the user to the updated webpage data
-        res.redirect('/customers');
-    } catch (error) {
-        console.error('Error executing queries:', error);
-        // Send a generic error message to the browser
-        res.status(500).send(
-            'An error occurred while executing the database queries.'
-        );
-    }
-});
-
 // Adds a simple delete endpoint for Customers to demo database changes
 app.delete('/customers/:customerID', async (req, res) => {
     try {

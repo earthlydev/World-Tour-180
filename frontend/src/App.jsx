@@ -21,7 +21,7 @@ import Flights from './pages/Flights';
 import Navigation from './components/Navigation';
 
 // Define the backend port and URL for API requests
-const backendPort = 6453;
+const backendPort = 4398;
 
 const backendURL = `http://classwork.engr.oregonstate.edu:${backendPort}`;
 
