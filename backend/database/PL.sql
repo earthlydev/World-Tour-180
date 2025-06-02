@@ -118,7 +118,7 @@ CREATE PROCEDURE sp_CreateFlight(
     OUT id INT)
 BEGIN
     INSERT INTO Flights (itineraryID, airlineID, bookingReferenceNum, flightNumber, departureAirport, arrivalAirport, departureTime, arrivalTime, cabinClass, notes) 
-    VALUES (f_itineraryID, f_airlineID,f_bookingReferenceNum, f_lightNumber, f_departureAirport, f_arrivalAirport, f_departureTime, f_arrivalTime, f_cabinClass, f_notes);
+    VALUES (f_itineraryID, f_airlineID,f_bookingReferenceNum, f_flightNumber, f_departureAirport, f_arrivalAirport, f_departureTime, f_arrivalTime, f_cabinClass, f_notes);
 
     SELECT LAST_INSERT_ID() into id;
     SELECT LAST_INSERT_ID() AS 'new_id';
@@ -213,7 +213,7 @@ CREATE PROCEDURE sp_UpdateAirport(
 BEGIN
     UPDATE Airports 
     SET
-    airportName = a_name, 
+    airportName = a_airportName, 
     iataCode = a_iataCode, 
     city = a_city, 
     country = a_country, 

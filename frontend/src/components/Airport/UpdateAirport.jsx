@@ -9,6 +9,7 @@ const UpdateAirport = ({ airports, backendURL, refreshAirport }) => {
     update_country: "",
     update_timezone: "",
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "update_id") {
@@ -79,11 +80,12 @@ const UpdateAirport = ({ airports, backendURL, refreshAirport }) => {
           onChange={handleChange}
         >
           <option value="">Select</option>
-          {airports.map((airport) => (
-            <option key={airport.id} value={airport.id}>
-              {airport.airportName}
-            </option>
-          ))}
+          {airports &&
+            airports.map((airport) => (
+              <option key={airport.airportID} value={airport.airportID}>
+                {airport.airportName}
+              </option>
+            ))}
         </select>
 
         <label htmlFor="update_name"> Name </label>

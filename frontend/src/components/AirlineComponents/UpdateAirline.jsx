@@ -72,7 +72,7 @@ const UpdateAirline = ({ airlines, backendURL, refreshAirline }) => {
           value={formData.update_id}
           onChange={handleChange}
         >
-          <option value="">Select a Airline</option>
+          <option value="">Select</option>
           {airlines &&
             airlines.map((airline) => (
               <option key={airline.airlineID} value={airline.airlineID}>

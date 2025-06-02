@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import TableRow from '../components/TableRow';
-import CreateFlight from '../components/CreateFlight';
-import UpdateFlight from '../components/UpdateFlight';
+import FlightTableRow from '../components/Flights/FlightTableRow';
+import CreateFlight from '../components/Flights/CreateFlight';
+import UpdateFlight from '../components/Flights/UpdateFlight';
 
 
 function Flights({ backendURL }) {
@@ -63,7 +63,7 @@ function Flights({ backendURL }) {
 
                 <tbody>
                     {
-                    flights.map((flight, index) => (<TableRow key={index} rowObject={{
+                    flights.map((flight, index) => (<FlightTableRow key={index} rowObject={{
                         ...flight,
                         departureTime: new Date(flight.departureTime).toLocaleString([], {
                         month: 'long',

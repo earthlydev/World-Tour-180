@@ -617,7 +617,7 @@ app.post('/airports/create', async function (req, res) {
 
         const [[[rows]]] = await db.query(query1, [
             data.create_name,
-            data.create_iataCode,
+            data.create_iata,
             data.create_city,
             data.create_country,
             data.create_timezone,
@@ -642,8 +642,8 @@ app.post('/airports/update', async function (req, res) {
 
         if (data.update_timezone === '') data.update_timezone = null;
 
-        const query1 = 'CALL sp_UpdateAirport(?, ?, ?, ?, ?);';
-        const query2 = 'SELECT airportName FROM Airports WHERE airlineID = ?;';
+        const query1 = 'CALL sp_UpdateAirport(?, ?, ?, ?, ?, ?);';
+        const query2 = 'SELECT airportName FROM Airports WHERE airportID = ?;';
         await db.query(query1, [
             data.update_id,
             data.update_name,
@@ -673,13 +673,12 @@ app.post('/airports/delete', async function (req, res) {
         let data = req.body;
 
         const query1 = `CALL sp_DeleteAirport(?);`;
-        await db.query(query1, [data.delete_airport_id]);
+        await db.query(query1, [data.delete_id]);
 
-        console.log(`DELETE airports. ID: ${data.delete_airport_id} ` +
-            `Name: ${data.delete_airport_name}`
+        console.log(`DELETE airports. ID: ${data.delete_id} ` +
+            `Name: ${data.delete_name}`
         );
-
-        res.redirect('/airports');
+        res.redirect('/airlines');
     } catch (error) {
         console.error('Error executing queries:', error);
         res.status(500).send(
@@ -708,10 +707,9 @@ app.post('/flights/create', async function (req, res) {
     try {
         let data = req.body;
 
-        if (isNaN(parseInt(data.create_notes)))
-            data.create_notes = null;
+        if (data.create_notes === '') data.create_notes = null;
 
-        const query1 = `CALL sp_CreateFlights(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @new_id);`;
+        const query1 = `CALL sp_CreateFlight(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @new_id);`;
 
         const [[[rows]]] = await db.query(query1, [
             data.create_i_id,
@@ -721,9 +719,9 @@ app.post('/flights/create', async function (req, res) {
             data.create_depAirport,
             data.create_arrAirport,
             data.create_depTime,
-            data.create_airTime,
+            data.create_arrTime,
             data.create_cabinClass,
-            data.create_notes,
+            data.create_notes
         ]);
 
         console.log(`CREATE flights. ID: ${rows.new_id} ` +
@@ -746,7 +744,7 @@ app.post('/flights/update', async function (req, res) {
         if (isNaN(parseInt(data.update_notes)))
             data.update_notes = null;
 
-        const query1 = 'CALL sp_UpdateFlights(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+        const query1 = 'CALL sp_UpdateFlight(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
         const query2 = 'SELECT bookingReferenceNum FROM Flights WHERE flightID = ?;';
         await db.query(query1, [
             data.update_id,
@@ -757,7 +755,7 @@ app.post('/flights/update', async function (req, res) {
             data.update_depAirport,
             data.update_arrAirport,
             data.update_depTime,
-            data.update_airTime,
+            data.update_arrTime,
             data.update_cabinClass,
             data.update_notes,
         ]);
@@ -782,10 +780,10 @@ app.post('/flights/delete', async function (req, res) {
         let data = req.body;
 
         const query1 = `CALL sp_DeleteFlight(?);`;
-        await db.query(query1, [data.delete_flight_id]);
+        await db.query(query1, [data.delete_id]);
 
-        console.log(`DELETE flights. ID: ${data.delete_flight_id} ` +
-            `Name: ${data.delete_flight_name}`
+        console.log(`DELETE flights. ID: ${data.delete_id} ` +
+            `Name: ${data.delete_name}`
         );
 
         res.redirect('/flights');

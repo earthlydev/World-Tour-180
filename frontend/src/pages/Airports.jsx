@@ -47,7 +47,7 @@ function Airports({ backendURL }) {
 
                 <tbody>
                     {airports.map((airport, index) => (
-                        <AirportTableRow key={index} rowObject={airport} backendURL={backendURL} refreshAirports={getData}/>
+                        <AirportTableRow key={index} rowObject={airport} backendURL={backendURL} refreshAirport={getData}/>
                     ))}
 
                 </tbody>

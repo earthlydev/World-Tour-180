@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const CreateAirport = ({ backendURL, refreshAirport }) => {
     const [formData, setFormData] = useState({
             create_name: '',
-            create_iataCode: '',
+            create_iata: '',
             create_city: '',
             create_country: '',
             create_timezone: ''

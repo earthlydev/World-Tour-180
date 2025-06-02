@@ -83,3 +83,387 @@ Error executing queries: Error: No matching record found in Airlines for id: 6
   sqlState: '45000',
   sqlMessage: 'No matching record found in Airlines for id: 6'
 }
+Error executing queries: Error: Duplicate entry '' for key 'iataCode'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:619:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: "CALL sp_CreateAirport('Los Angeles International Airport', '', 'Los Angeles', 'United States', NULL, @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry '' for key 'iataCode'"
+}
+Error executing queries: Error: Duplicate entry '' for key 'iataCode'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:619:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: "CALL sp_CreateAirport('Hartsfield-Jackson Atlanta International Airport', '', 'Atlanta', 'United States', NULL, @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry '' for key 'iataCode'"
+}
+Error executing queries: Error: Duplicate entry '' for key 'iataCode'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:619:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: "CALL sp_CreateAirport('Hartsfield-Jackson Atlanta International Airport', '', 'Atlanta', 'United States', NULL, @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry '' for key 'iataCode'"
+}
+Error executing queries: Error: Duplicate entry '' for key 'iataCode'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:619:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_DUP_ENTRY',
+  errno: 1062,
+  sql: "CALL sp_CreateAirport('Dubai International Airport', '', 'Garhoud', 'Dubai', NULL, @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Duplicate entry '' for key 'iataCode'"
+}
+Error executing queries: Error: Column 'iataCode' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:619:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: "CALL sp_CreateAirport('Heathrow Airport', NULL, 'Hillingdon', 'London', NULL, @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Column 'iataCode' cannot be null"
+}
+Error executing queries: Error: Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:676:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_WRONG_VALUE_FOR_VAR',
+  errno: 1231,
+  sql: 'CALL sp_DeleteAirport(NULL);',
+  sqlState: '42000',
+  sqlMessage: "Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'"
+}
+Error executing queries: Error: Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:676:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_WRONG_VALUE_FOR_VAR',
+  errno: 1231,
+  sql: 'CALL sp_DeleteAirport(NULL);',
+  sqlState: '42000',
+  sqlMessage: "Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'"
+}
+Error executing queries: Error: Incorrect number of arguments for PROCEDURE cs340_arizalaj.sp_UpdateAirport; expected 6, got 5
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:647:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_SP_WRONG_NO_OF_ARGS',
+  errno: 1318,
+  sql: "CALL sp_UpdateAirport('4', 'John F. Kennedy International', 'JFK', 'New York', 'United States of America');",
+  sqlState: '42000',
+  sqlMessage: 'Incorrect number of arguments for PROCEDURE cs340_arizalaj.sp_UpdateAirport; expected 6, got 5'
+}
+Error executing queries: Error: Unknown column 'a_name' in 'SET'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:647:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: "CALL sp_UpdateAirport('4', 'John F. Kennedy International', 'JFK', 'New York', 'United States of America', 'UTC-6');",
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 'a_name' in 'SET'"
+}
+Error executing queries: Error: Unknown column 'airlineID' in 'WHERE'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:655:35
+    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: "SELECT airportName FROM Airports WHERE airlineID = '4';",
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 'airlineID' in 'WHERE'"
+}
+Error executing queries: Error: Column 'airportName' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:618:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: 'CALL sp_CreateAirport(NULL, NULL, NULL, NULL, NULL, @new_id);',
+  sqlState: '23000',
+  sqlMessage: "Column 'airportName' cannot be null"
+}
+Error executing queries: Error: Column 'airportName' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:618:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: 'CALL sp_CreateAirport(NULL, NULL, NULL, NULL, NULL, @new_id);',
+  sqlState: '23000',
+  sqlMessage: "Column 'airportName' cannot be null"
+}
+Error executing queries: Error: Column 'airportName' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:618:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: 'CALL sp_CreateAirport(NULL, NULL, NULL, NULL, NULL, @new_id);',
+  sqlState: '23000',
+  sqlMessage: "Column 'airportName' cannot be null"
+}
+Error executing queries: Error: Column 'airportName' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:618:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: 'CALL sp_CreateAirport(NULL, NULL, NULL, NULL, NULL, @new_id);',
+  sqlState: '23000',
+  sqlMessage: "Column 'airportName' cannot be null"
+}
+Error executing queries: Error: Column 'airportName' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:618:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: 'CALL sp_CreateAirport(NULL, NULL, NULL, NULL, NULL, @new_id);',
+  sqlState: '23000',
+  sqlMessage: "Column 'airportName' cannot be null"
+}
+Error executing queries: Error: Column 'airportName' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:618:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: 'CALL sp_CreateAirport(NULL, NULL, NULL, NULL, NULL, @new_id);',
+  sqlState: '23000',
+  sqlMessage: "Column 'airportName' cannot be null"
+}
+Error executing queries: Error: Unknown column 'f_lightNumber' in 'VALUES'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:714:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sql: "CALL sp_CreateFlight(1, 2, 'EAACD348', 'EA395', 1, 3, '2025-06-13 12:02:00', NULL, 'Economy', 'Window seat preferred', @new_id);",
+  sqlState: '42S22',
+  sqlMessage: "Unknown column 'f_lightNumber' in 'VALUES'"
+}
+Error executing queries: Error: Column 'arrivalTime' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:714:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: "CALL sp_CreateFlight(1, 2, 'EAACD348', 'EA395', 1, 3, '2025-06-13 12:02:00', NULL, 'Economy', 'Window seat preferred', @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Column 'arrivalTime' cannot be null"
+}
+Error executing queries: Error: Column 'arrivalTime' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:714:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: "CALL sp_CreateFlight(1, 2, 'EAACD348', 'EA395', 1, 3, '2025-06-13 12:02:00', NULL, 'Economy', 'Window seat preferred', @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Column 'arrivalTime' cannot be null"
+}
+Error executing queries: Error: Column 'arrivalTime' cannot be null
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:714:37
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_BAD_NULL_ERROR',
+  errno: 1048,
+  sql: "CALL sp_CreateFlight(1, 2, 'EAACD348', 'EA395', 1, 3, '2025-06-13 12:02:00', NULL, 'Economy', 'Window seat preferred', @new_id);",
+  sqlState: '23000',
+  sqlMessage: "Column 'arrivalTime' cannot be null"
+}
+Error executing queries: Error: PROCEDURE cs340_arizalaj.sp_UpdateFlights does not exist
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:749:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_SP_DOES_NOT_EXIST',
+  errno: 1305,
+  sql: "CALL sp_UpdateFlights('4', 3, 4, 'NAGHI012', 'NA103', 3, 1, '2025-09-20 06:45:00', '2025-09-20 00:30:00', 'Economy', NULL);",
+  sqlState: '42000',
+  sqlMessage: 'PROCEDURE cs340_arizalaj.sp_UpdateFlights does not exist'
+}
+Error executing queries: Error: PROCEDURE cs340_arizalaj.sp_UpdateFlights does not exist
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:749:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_SP_DOES_NOT_EXIST',
+  errno: 1305,
+  sql: "CALL sp_UpdateFlights('4', 3, 4, 'NAGHI012', 'MA103', 3, 1, '2025-09-20 06:45:00', '2025-09-20 00:30:00', 'Economy', NULL);",
+  sqlState: '42000',
+  sqlMessage: 'PROCEDURE cs340_arizalaj.sp_UpdateFlights does not exist'
+}
+Error executing queries: Error: Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:783:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_WRONG_VALUE_FOR_VAR',
+  errno: 1231,
+  sql: 'CALL sp_DeleteFlight(NULL);',
+  sqlState: '42000',
+  sqlMessage: "Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'"
+}

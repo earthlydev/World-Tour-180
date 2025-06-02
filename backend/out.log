@@ -12,3 +12,45 @@ DELETE airlines. ID: 9 Name: American Airlines
 CREATE airlines. ID: 10 Name: American Airlines
 DELETE airlines. ID: 10 Name: American Airlines
 CREATE airports. ID: 6 Name: Los Angeles International Airport
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+CREATE airports. ID: 11 Name: Heathrow Airport
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+DELETE airports. ID: 6 Name: Los Angeles International Airport
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+DELETE airports. ID: 11 Name: Heathrow Airport
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+CREATE airports. ID: 12 Name: Los Angeles International Airport
+DELETE airports. ID: 12 Name: Los Angeles International Airport
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+CREATE airports. ID: 13 Name: Los Angeles International Airport
+DELETE airports. ID: 13 Name: Los Angeles International Airport
+CREATE airlines. ID: 11 Name: American Airlines
+DELETE airlines. ID: 11 Name: American Airlines
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+CREATE airports. ID: 14 Name: Los Angeles International Airport
+CREATE airports. ID: 15 Name: Heathrow Airport
+CREATE airports. ID: 16 Name: Denver International Airport
+DELETE airports. ID: 16 Name: Denver International Airport
+DELETE airports. ID: 15 Name: Heathrow Airport
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+UPDATE airports. ID: 4 Name: John F. Kennedy International
+UPDATE airports. ID: 4 Name: John F. Kennedy International
+UPDATE airports. ID: 4 Name: John F. Kennedy International
+UPDATE airports. ID: 4 Name: John F. Kennedy International
+UPDATE airports. ID: 4 Name: John F. Kennedy International
+UPDATE airports. ID: 4 Name: 1John F. Kennedy International
+UPDATE airports. ID: 4 Name: John F. Kennedy International
+DELETE airports. ID: 14 Name: Los Angeles International Airport
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+CREATE flights. ID: 6 Booking Reference Number: EAACD348
+CREATE flights. ID: 7 Booking Reference Number: EAACD348
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+UPDATE flights. ID: 4 Booking Reference Number: NAGHI012
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+DELETE flights. ID: 7 Name: EAACD348

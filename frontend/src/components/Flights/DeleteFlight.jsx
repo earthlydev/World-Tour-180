@@ -1,14 +1,11 @@
-// Citation for code below
-// https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
-
-const DeleteAirport = ({ rowObject, backendURL, refreshAirport }) => {
+const DeleteFlight = ({ rowObject, backendURL, refreshFlight }) => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const formData = {
-            delete_id: rowObject.airportID,
-            delete_name: rowObject.airportName,
+            delete_id: rowObject.flightID,
+            delete_name: rowObject.bookingReferenceNum,
         };
 
         if (!window.confirm(`Are you sure you want to delete ${formData.delete_name}?`)) {
@@ -16,26 +13,26 @@ const DeleteAirport = ({ rowObject, backendURL, refreshAirport }) => {
         }
 
         try {
-            const response = await fetch(`${backendURL}/airports/delete`, {
+            const response = await fetch (`${backendURL}/flights/delete`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
             if (response.ok) {
-                console.log('Airport deleted successfully.');
-                refreshAirport();
+                console.log('Flight deleted successfully.');
+                refreshFlight();
             } else {
-                console.error('Error deleting airport.');
+                console.error('Error deleting flight.');
                 if (response.status === 404 ) {
-                    alert('Airport not found.');
+                    alert('Flight not found.');
                 } else {
-                    alert('Error deleting airport.');
+                    alert('Error deleting flight.');
                 }
             }
         } catch (error) {
             console.error('Error during deletion:', error);
-            alert(`Network error during deletion: ${error.message}`);
+            alert('Network error during deletion');
         }
     };
 
@@ -51,4 +48,4 @@ const DeleteAirport = ({ rowObject, backendURL, refreshAirport }) => {
     );
 };
 
-export default DeleteAirport;
+export default DeleteFlight;
