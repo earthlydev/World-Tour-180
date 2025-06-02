@@ -26,6 +26,7 @@ function formatDate(dateString) {
 
 // Middleware
 const cors = require('cors');
+const { devNull } = require('os');
 app.use(cors({ credentials: true, origin: "*" }));
 app.use(express.json()); // this is needed for post requests
 
@@ -66,7 +67,6 @@ app.post('/reset', async (req, res) => {
     }
 });
 
-// READ ROUTES
 // ---- DESTINATIONS ROUTES ----
 app.get('/destinations', async (req, res) => {
     try {
@@ -82,13 +82,108 @@ app.get('/destinations', async (req, res) => {
     
 });
 
+// CREATE destination
+app.post('/destinations/create', async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_currency)))
+            data.create_currency = null;
+        if (isNaN(parseInt(data.create_language)))
+            data.create_language = null;
+        if (isNaN(parseInt(data.create_description)))
+            data.create_description = null
+
+        const query1 = `CALL sp_CreateDestinations(?, ?, ?, ?, ?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query1, [
+            data.create_name,
+            data.create_country,
+            data.create_timezone,
+            data.create_visaRequired,
+            data.create_currency,
+            data.create_language,
+            data.create_description
+        ]);
+
+        console.log(`CREATE destinations. ID: ${rows.new_id} ` +
+            `Name: ${data.create_name}`
+        );
+
+        res.status(200).json({ message: 'Destinations created successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// UPDATE destination
+app.post('/destinations/update', async function (req, res) {
+    try {
+        const data = req.body;
+
+        if (isNaN(parseInt(data.create_currency)))
+            data.create_currency = null;
+        if (isNaN(parseInt(data.create_language)))
+            data.create_language = null;
+        if (isNaN(parseInt(data.create_description)))
+            data.create_description = null
+
+        const query1 = 'CALL sp_UpdateDestinations(?, ?, ?, ?, ?, ?, ?, ?);';
+        const query2 = 'SELECT name FROM Destinations WHERE id = ?;';
+        await db.query(query1, [
+            data.update_id,
+            data.update_name,
+            data.update_country,
+            data.update_timezone,
+            data.update_visaRequired,
+            data.update_currency,
+            data.update_language,
+            data.update_description
+        ]);
+        const [[rows]] = await db.query(query2, [data.update_id]);
+
+        console.log(`UPDATE destinations. ID: ${data.update_id} ` +
+            `Name: ${rows.name}`
+        );
+
+        res.status(200).json({ message: 'Destinations updated successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// Delete for destination
+app.delete('/destinations/delete', async (req, res) => {
+    try {
+        let data = req.body;
+        const query1 = `CALL sp_DeleteDestination(?);`;
+        await db.query(query1, [data.delete_destination_id]);
+
+        console.log(`DELETE destinations. ID: ${data.delete_destination_id} ` +
+            `Name: ${data.delete_destination_name}`
+        );
+
+        res.redirect('/destinations');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
 // ---- CUSTOMERS ROUTES ----
 app.get('/customers', async (req, res) => {
     try {
         const display_customers = `SELECT * FROM Customers;`;
         const [customers] = await db.query(display_customers);
         
-        // Format the date fields
         const formattedCustomers = customers.map(customer => ({
             ...customer,
             passportExpiration: formatDate(customer.passportExpiration),
@@ -163,6 +258,74 @@ app.get('/itinerarydestinations', async (req, res) => {
     } catch (error) {
         console.error("Error executing queries:", error);
         res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// CREATE itinerarydestination
+app.post('/itinerarydestinations/create', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const query1 = `CALL sp_CreateItineraryDestinations(?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query1, [
+            data.create_i_id,
+            data.create_d_id,
+        ]);
+
+        console.log(`CREATE itinerarydestinations. ID: ${rows.new_id} `);
+
+        res.status(200).json({ message: 'ItineraryDestinations created successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// UPDATE itinerarydestination
+app.post('/itinerarydestinations/update', async function (req, res) {
+    try {
+        const data = req.body;
+
+        const query1 = 'CALL sp_UpdateItineraryDestinations(?, ?, ?);';
+        await db.query(query1, [
+            data.update_id,
+            data.update_i_id,
+            data.update_d_id,
+        ]);
+        const [[rows]] = await db.query(query2, [data.update_id]);
+
+        console.log(`UPDATE itinerarydestinations. ID: ${data.update_id} `);
+
+        res.status(200).json({ message: 'ItineraryDestinations updated successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// DELETE itinerary destination
+app.post('/itinerarydestinations/delete', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const query1 = `CALL sp_DeleteItineraryDestination(?);`;
+        await db.query(query1, [data.delete_itineraryDestination_id]);
+
+        console.log(`DELETE itinerarydestinations. ID: ${data.delete_itineraryDestination_id} ` +
+            `Name: ${data.delete_itineraryDestination_name}`
+        );
+
+        res.redirect('/itinerarydestinations');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
     }
 });
 
@@ -354,7 +517,92 @@ app.get('/airlines', async (req, res) => {
     }
 });
 
+// CREATE airlines
+app.post('/airlines/create', async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_website)))
+            data.create_website = null;
+        if (isNaN(parseInt(data.create_phone)))
+            data.create_phone = null;
+
+        const query1 = `CALL sp_CreateAirline(?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query1, [
+            data.create_name,
+            data.create_website,
+            data.create_phone,
+        ]);
+
+        console.log(`CREATE airlines. ID: ${rows.new_id} ` +
+            `Name: ${data.create_name}`);
+
+        res.status(200).json({ message: 'Airline created successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// UPDATE airlines
+app.post('/airlines/update', async function (req, res) {
+    try {
+        const data = req.body;
+
+        if (isNaN(parseInt(data.update_website)))
+            data.update_website = null;
+        if (isNaN(parseInt(data.update_phone)))
+            data.update_phone = null;
+
+        const query1 = 'CALL sp_UpdateAirline(?, ?, ?, ?);';
+        const query2 = 'SELECT airlineName FROM Airlines WHERE id = ?;';
+        await db.query(query1, [
+            data.update_id,
+            data.update_name,
+            data.update_website,
+            data.update_phone,
+        ]);
+        const [[rows]] = await db.query(query2, [data.update_id]);
+
+        console.log(`UPDATE airlines. ID: ${data.update_id} ` +
+            `Name: ${rows.airlineName}`
+        );
+
+        res.status(200).json({ message: 'Airline updated successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// DELETE Airlines
+app.post('/airlines/delete', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const query1 = `CALL sp_DeleteAirline(?);`;
+        await db.query(query1, [data.delete_airline_id]);
+
+        console.log(`DELETE airlines. ID: ${data.delete_airline_id} ` +
+            `Name: ${data.delete_airline_name}`
+        );
+
+        res.redirect('/airlines');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
 // ---- AIRPORTS ROUTES ----
+// READ Airports
 app.get('/airports', async (req, res) => {
     try {
         const display_airports = `SELECT * FROM Airports`;
@@ -365,6 +613,88 @@ app.get('/airports', async (req, res) => {
     } catch (error) {
         console.error("Error executing queries:", error);
         res.status(500).send("An error occurred while executing the database queries.");
+    }
+});
+
+// CREATE airports
+app.post('/airports/create', async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_timezone)))
+            data.create_timezone = null;
+
+        const query1 = `CALL sp_CreateAirport(?, ?, ?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query1, [
+            data.create_name,
+            data.create_iataCode,
+            data.create_city,
+            data.create_country,
+            data.create_timezone,
+        ]);
+
+        console.log(`CREATE airports. ID: ${rows.new_id} ` +
+            `Name: ${data.create_name}`);
+
+        res.status(200).json({ message: 'Airport created successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// UPDATE airports
+app.post('/airports/update', async function (req, res) {
+    try {
+        const data = req.body;
+
+        if (isNaN(parseInt(data.update_timezone)))
+            data.update_timezone = null;
+
+        const query1 = 'CALL sp_UpdateAirport(?, ?, ?, ?, ?);';
+        const query2 = 'SELECT airportName FROM Airports WHERE id = ?;';
+        await db.query(query1, [
+            data.update_id,
+            data.update_name,
+            data.update_website,
+            data.update_timezone,
+        ]);
+        const [[rows]] = await db.query(query2, [data.update_id]);
+
+        console.log(`UPDATE airports. ID: ${data.update_id} ` +
+            `Name: ${rows.airportName}`
+        );
+
+        res.status(200).json({ message: 'Airport updated successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// DELETE airports
+app.post('/airports/delete', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const query1 = `CALL sp_DeleteAirport(?);`;
+        await db.query(query1, [data.delete_airport_id]);
+
+        console.log(`DELETE airports. ID: ${data.delete_airport_id} ` +
+            `Name: ${data.delete_airport_name}`
+        );
+
+        res.redirect('/airports');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
     }
 });
 
@@ -383,6 +713,99 @@ app.get('/flights', async (req, res) => {
     }
 });
 
+// CREATE flights
+app.post('/flights/create', async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_notes)))
+            data.create_notes = null;
+
+        const query1 = `CALL sp_CreateFlights(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query1, [
+            data.create_i_id,
+            data.create_a_id,
+            data.create_bookingNum,
+            data.create_flightNum,
+            data.create_depAirport,
+            data.create_arrAirport,
+            data.create_depTime,
+            data.create_airTime,
+            data.create_cabinClass,
+            data.create_notes,
+        ]);
+
+        console.log(`CREATE flights. ID: ${rows.new_id} ` +
+            `Booking Reference Number: ${data.create_bookingNum}`);
+
+        res.status(200).json({ message: 'Flights created successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// UPDATE flights
+app.post('/flights/update', async function (req, res) {
+    try {
+        const data = req.body;
+
+        if (isNaN(parseInt(data.update_notes)))
+            data.update_notes = null;
+
+        const query1 = 'CALL sp_UpdateFlights(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+        const query2 = 'SELECT bookingReferenceNum FROM Flights WHERE id = ?;';
+        await db.query(query1, [
+            data.update_id,
+            data.update_i_id,
+            data.update_a_id,
+            data.update_bookingNum,
+            data.update_flightNum,
+            data.update_depAirport,
+            data.update_arrAirport,
+            data.update_depTime,
+            data.update_airTime,
+            data.update_cabinClass,
+            data.update_notes,
+        ]);
+        const [[rows]] = await db.query(query2, [data.update_id]);
+
+        console.log(`UPDATE flights. ID: ${data.update_id} ` +
+            `Booking Reference Number: ${rows.bookingReferenceNum}`
+        );
+
+        res.status(200).json({ message: 'Flights updated successfully' });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// DELETE flights
+app.post('/flights/delete', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const query1 = `CALL sp_DeleteFlight(?);`;
+        await db.query(query1, [data.delete_flight_id]);
+
+        console.log(`DELETE flights. ID: ${data.delete_flight_id} ` +
+            `Name: ${data.delete_flight_name}`
+        );
+
+        res.redirect('/flights');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
 
 // ########################################
 // ########## LISTENER
