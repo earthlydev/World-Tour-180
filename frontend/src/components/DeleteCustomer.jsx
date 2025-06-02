@@ -15,7 +15,7 @@ const DeleteCustomer = ({ rowObject, backendURL, refreshCustomer }) => {
             const response = await fetch(`${backendURL}/customers/${rowObject.customerID}`, {
                 method: 'DELETE',
                 headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
                 }
             });
 

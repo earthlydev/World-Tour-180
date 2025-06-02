@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';  // Importing useState for managing state in the component
-import TableRow from '../components/TableRow';
-import LinkItiDes from '../components/LinkItiDes';
-import UpdateItiDes from '../components/UpdateItiDes';
+// Citation: copilot.microsoft.com
+// Prompt: How do I map specificy data to show on a React?
+import { useState, useEffect } from 'react';
+import ItiDesTableRow from '../components/ItiDes/ItiDesTableRow';
+import LinkItiDes from '../components/ItiDes/LinkItiDes';
+import UpdateItiDes from '../components/ItiDes/UpdateItiDes';
 
 function ItineraryDestinations({ backendURL }) {
     const [itinerarydestinations, setItineraryDestinations] = useState([]);
@@ -15,7 +17,7 @@ function ItineraryDestinations({ backendURL }) {
             const itiRes = await fetch(backendURL + '/itineraries');
             const desRes = await fetch(backendURL + '/destinations');
             
-            const {itinerarydestinations} = await response.json();
+            const { itinerarydestinations } = await response.json();
             const { itineraries } = await itiRes.json();
             const { destinations } = await desRes.json();
 
@@ -35,8 +37,8 @@ function ItineraryDestinations({ backendURL }) {
 
             const enrichedData = itinerarydestinations.map(item => ({
                 ...item,
-                itineraryTitle: itineraryMap[item.itineraryID]?.title || 'Unknown',
-                destinationName: destinationMap[item.destinationID]?.name || 'Unknown'
+                title: itineraryMap[item.itineraryID]?.title || 'Unknown',
+                name: destinationMap[item.destinationID]?.name || 'Unknown'
             }));
 
             setCombinedData(enrichedData);
@@ -61,8 +63,8 @@ function ItineraryDestinations({ backendURL }) {
                             <th key="idID">Itinerary Destinations ID</th>,
                             <th key="itineraryID">Itinerary ID</th>,
                             <th key="destinationID">Destination ID</th>,
-                            <th key="itineraryTitle">Itinerary Title</th>,
-                            <th key="destinationName">Destination Name</th>
+                            <th key="title">Itinerary Title</th>,
+                            <th key="name">Destination Name</th>
                         ]}
                         <th></th>
                     </tr>
@@ -70,11 +72,11 @@ function ItineraryDestinations({ backendURL }) {
                 
                 <tbody>
                     {combinedData.map((row, index) => (
-                        <TableRow 
+                        <ItiDesTableRow 
                             key={index} 
                             rowObject={row} 
                             backendURL={backendURL} 
-                            refreshItinerarydestinations={getData}
+                            refreshItiDes={getData}
                         />
                     ))}
 
@@ -83,13 +85,16 @@ function ItineraryDestinations({ backendURL }) {
             <LinkItiDes
                 itineraries={itineraries}
                 destinations={destinations} 
-                backendURL={backendURL} 
+                backendURL={backendURL}
+                refreshItiDes={getData} 
             />
             <UpdateItiDes 
-                itineraryDestiantions={itinerarydestinations}
+                itineraryDestinations={itinerarydestinations}
                 itineraries={itineraries}
                 destinations={destinations} 
-                backendURL={backendURL}  
+                backendURL={backendURL}
+                refreshItiDes={getData} 
+
             />    
         </>
     );

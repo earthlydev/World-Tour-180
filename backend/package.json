@@ -3,16 +3,21 @@
   "main": "server.js",
   "scripts": {
     "development": "nodemon server.js",
-    "production": "npx forever start server.js",
-    "stop_production": "npx forever stop server.js"
-},
+    "production": "forever start -a --minUptime 5000 --spinSleepTime 5000 -l forever.log -o out.log -e err.log server.js",
+    "stop_production": "forever stop server.js",
+    "restart_production": "forever restart server.js",
+    "list_production": "forever list",
+    "logs": "tail -f forever.log out.log err.log"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "forever": "^4.0.3",
     "mysql2": "^3.14.1",
     "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "forever": "^4.0.3"
   }
 }

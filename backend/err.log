@@ -1,0 +1,85 @@
+Error executing queries: Error: Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:579:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_WRONG_VALUE_FOR_VAR',
+  errno: 1231,
+  sql: 'CALL sp_DeleteAirline(NULL);',
+  sqlState: '42000',
+  sqlMessage: "Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'"
+}
+Error executing queries: Error: Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:579:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_WRONG_VALUE_FOR_VAR',
+  errno: 1231,
+  sql: 'CALL sp_DeleteAirline(NULL);',
+  sqlState: '42000',
+  sqlMessage: "Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'"
+}
+Error executing queries: Error: Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:579:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_WRONG_VALUE_FOR_VAR',
+  errno: 1231,
+  sql: 'CALL sp_DeleteAirline(NULL);',
+  sqlState: '42000',
+  sqlMessage: "Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'"
+}
+Error executing queries: Error: Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:579:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_WRONG_VALUE_FOR_VAR',
+  errno: 1231,
+  sql: 'CALL sp_DeleteAirline(NULL);',
+  sqlState: '42000',
+  sqlMessage: "Variable 'MESSAGE_TEXT' can't be set to the value of 'NULL'"
+}
+Error executing queries: Error: No matching record found in Airlines for id: 6
+    at PromisePool.query (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/server.js:579:18
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/route.js:117:3)
+    at handle (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/lib/layer.js:152:17)
+    at /nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:295:15
+    at processParams (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:582:12)
+    at next (/nfs/stak/users/arizalaj/CS340/project/backend/node_modules/router/index.js:291:5) {
+  code: 'ER_SIGNAL_EXCEPTION',
+  errno: 1644,
+  sql: 'CALL sp_DeleteAirline(6);',
+  sqlState: '45000',
+  sqlMessage: 'No matching record found in Airlines for id: 6'
+}

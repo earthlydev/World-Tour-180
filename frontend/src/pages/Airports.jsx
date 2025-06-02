@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';  // Importing useState for managing state in the component
-import TableRow from '../components/TableRow';
-import CreateAirport from '../components/CreateAirport';
-import UpdateAirport from '../components/UpdateAirport';
+import { useState, useEffect } from 'react'; 
+import AirportTableRow from '../components/Airport/AirportTableRow';
+import CreateAirport from '../components/Airport/CreateAirport';
+import UpdateAirport from '../components/Airport/UpdateAirport';
 
 function Airports({ backendURL }) {
     const [airports, setAirports] = useState([]);
@@ -47,7 +47,7 @@ function Airports({ backendURL }) {
 
                 <tbody>
                     {airports.map((airport, index) => (
-                        <TableRow key={index} rowObject={airport} backendURL={backendURL} refreshAirports={getData}/>
+                        <AirportTableRow key={index} rowObject={airport} backendURL={backendURL} refreshAirports={getData}/>
                     ))}
 
                 </tbody>

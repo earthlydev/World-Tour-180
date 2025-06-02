@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import TableRow from '../components/TableRow';
-import CreateAirline from '../components/CreateAirline';
-import UpdateAirline from '../components/UpdateAirline';
+import AirlineTableRow from '../components/AirlineComponents/AirlineTableRow';
+import CreateAirline from '../components/AirlineComponents/CreateAirline';
+import UpdateAirline from '../components/AirlineComponents/UpdateAirline';
 
 function Airlines({ backendURL }) {
     const [airlines, setAirlines] = useState([]);
@@ -44,7 +44,7 @@ function Airlines({ backendURL }) {
 
                 <tbody>
                     {airlines.map((airline, index) => (
-                        <TableRow key={index} rowObject={airline} backendURL={backendURL} refreshaAirlines={getData}/>
+                        <AirlineTableRow key={index} rowObject={airline} backendURL={backendURL} refreshAirline={getData}/>
                     ))}
 
                 </tbody>

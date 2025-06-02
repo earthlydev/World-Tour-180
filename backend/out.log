@@ -1,0 +1,14 @@
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+DELETE destinations. ID: 4 Name: Koh Samui Island
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+Express started on http://classwork.engr.oregonstate.edu:4398; press Ctrl-C to terminate.
+DELETE airlines. ID: 6 Name: American Airlines
+CREATE airlines. ID: 7 Name: American Airlines
+DELETE airlines. ID: 7 Name: American Airlines
+CREATE airlines. ID: 8 Name: American Airlines
+DELETE airlines. ID: 8 Name: American Airlines
+CREATE airlines. ID: 9 Name: American Airlines
+DELETE airlines. ID: 9 Name: American Airlines
+CREATE airlines. ID: 10 Name: American Airlines
+DELETE airlines. ID: 10 Name: American Airlines
+CREATE airports. ID: 6 Name: Los Angeles International Airport

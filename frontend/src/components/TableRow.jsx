@@ -1,4 +1,4 @@
-import DeleteDestination from './DeleteDestination';
+import DeleteDestination from "./Destination/DeleteDestination";
 
 const TableRow = ({ rowObject, backendURL, refreshDestination }) => {
     // Function to determine if this row is a customer

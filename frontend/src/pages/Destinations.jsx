@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import TableRow from '../components/TableRow';
-import CreateDestination from '../components/CreateDestination';
-import UpdateDestination from '../components/UpdateDestination';
-
+import DesTableRow from '../components/Destination/DesTableRow';
+import CreateDestination from '../components/Destination/CreateDestination';
+import UpdateDestination from '../components/Destination/UpdateDestination';
 
 function Destinations({ backendURL }) {
     const [destinations, setDestinations] = useState([]);
@@ -50,7 +49,7 @@ function Destinations({ backendURL }) {
 
                 <tbody>
                     {destinations.map((destination, index) => (
-                        <TableRow key={index} rowObject={{
+                        <DesTableRow key={index} rowObject={{
                             ...destination,
                             visaRequired: destination.visaRequired === 1 ? 'Yes' : 'No'
                         }} backendURL={backendURL} refreshDestination={getData}/>

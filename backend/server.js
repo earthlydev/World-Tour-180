@@ -87,14 +87,12 @@ app.post('/destinations/create', async function (req, res) {
     try {
         let data = req.body;
 
-        if (isNaN(parseInt(data.create_currency)))
-            data.create_currency = null;
-        if (isNaN(parseInt(data.create_language)))
-            data.create_language = null;
-        if (isNaN(parseInt(data.create_description)))
-            data.create_description = null
+        if (data.create_currency === '') data.create_currency = null;
+        if (data.create_language === '') data.create_language = null;
+        if (data.create_description === '') data.create_description = null;
 
-        const query1 = `CALL sp_CreateDestinations(?, ?, ?, ?, ?, ?, ?, @new_id);`;
+
+        const query1 = `CALL sp_CreateDestination(?, ?, ?, ?, ?, ?, ?, @new_id);`;
 
         const [[[rows]]] = await db.query(query1, [
             data.create_name,
@@ -106,11 +104,11 @@ app.post('/destinations/create', async function (req, res) {
             data.create_description
         ]);
 
-        console.log(`CREATE destinations. ID: ${rows.new_id} ` +
+        console.log(`CREATE destination. ID: ${rows.new_id} ` +
             `Name: ${data.create_name}`
         );
 
-        res.status(200).json({ message: 'Destinations created successfully' });
+        res.status(200).json({ message: 'Destination created successfully' });
     } catch (error) {
         console.error('Error executing queries:', error);
         res.status(500).send(
@@ -124,15 +122,12 @@ app.post('/destinations/update', async function (req, res) {
     try {
         const data = req.body;
 
-        if (isNaN(parseInt(data.create_currency)))
-            data.create_currency = null;
-        if (isNaN(parseInt(data.create_language)))
-            data.create_language = null;
-        if (isNaN(parseInt(data.create_description)))
-            data.create_description = null
+        if (data.update_currency === '') data.update_currency = null;
+        if (data.update_language === '') data.update_language = null;
+        if (data.update_description === '') data.update_description = null;
 
-        const query1 = 'CALL sp_UpdateDestinations(?, ?, ?, ?, ?, ?, ?, ?);';
-        const query2 = 'SELECT name FROM Destinations WHERE id = ?;';
+        const query1 = 'CALL sp_UpdateDestination(?, ?, ?, ?, ?, ?, ?, ?);';
+        const query2 = 'SELECT name FROM Destinations WHERE destinationID = ?;';
         await db.query(query1, [
             data.update_id,
             data.update_name,
@@ -159,17 +154,16 @@ app.post('/destinations/update', async function (req, res) {
 });
 
 // Delete for destination
-app.delete('/destinations/delete', async (req, res) => {
+app.post('/destinations/delete', async (req, res) => {
     try {
         let data = req.body;
         const query1 = `CALL sp_DeleteDestination(?);`;
-        await db.query(query1, [data.delete_destination_id]);
+        await db.query(query1, [data.delete_id]);
 
-        console.log(`DELETE destinations. ID: ${data.delete_destination_id} ` +
-            `Name: ${data.delete_destination_name}`
+        console.log(`DELETE destinations. ID: ${data.delete_id} ` +
+            `Name: ${data.delete_name}`
         );
-
-        res.redirect('/destinations');
+        res.status(200).json({ message: 'Destination deleted successfully.' });
     } catch (error) {
         console.error('Error executing queries:', error);
         res.status(500).send(
@@ -266,7 +260,11 @@ app.post('/itinerarydestinations/create', async function (req, res) {
     try {
         let data = req.body;
 
-        const query1 = `CALL sp_CreateItineraryDestinations(?, ?, @new_id);`;
+        if (!data.create_i_id || !data.create_d_id) {
+            return res.status(400).json({ error: 'Itinerary ID and destination ID are required.' });
+        }
+
+        const query1 = `CALL sp_CreateItiDes(?, ?, @new_id);`;
 
         const [[[rows]]] = await db.query(query1, [
             data.create_i_id,
@@ -275,7 +273,7 @@ app.post('/itinerarydestinations/create', async function (req, res) {
 
         console.log(`CREATE itinerarydestinations. ID: ${rows.new_id} `);
 
-        res.status(200).json({ message: 'ItineraryDestinations created successfully' });
+        res.status(200).json({ message: 'ItiDes created successfully' });
     } catch (error) {
         console.error('Error executing queries:', error);
         res.status(500).send(
@@ -289,17 +287,16 @@ app.post('/itinerarydestinations/update', async function (req, res) {
     try {
         const data = req.body;
 
-        const query1 = 'CALL sp_UpdateItineraryDestinations(?, ?, ?);';
+        const query1 = 'CALL sp_UpdateItiDes(?, ?, ?);';
         await db.query(query1, [
             data.update_id,
             data.update_i_id,
             data.update_d_id,
         ]);
-        const [[rows]] = await db.query(query2, [data.update_id]);
 
         console.log(`UPDATE itinerarydestinations. ID: ${data.update_id} `);
 
-        res.status(200).json({ message: 'ItineraryDestinations updated successfully' });
+        res.status(200).json({ message: 'ItiDes updated successfully' });
     } catch (error) {
         console.error('Error executing queries:', error);
         res.status(500).send(
@@ -313,13 +310,10 @@ app.post('/itinerarydestinations/delete', async function (req, res) {
     try {
         let data = req.body;
 
-        const query1 = `CALL sp_DeleteItineraryDestination(?);`;
-        await db.query(query1, [data.delete_itineraryDestination_id]);
+        const query1 = `CALL sp_DeleteItiDes(?);`;
+        await db.query(query1, [data.delete_id]);
 
-        console.log(`DELETE itinerarydestinations. ID: ${data.delete_itineraryDestination_id} ` +
-            `Name: ${data.delete_itineraryDestination_name}`
-        );
-
+        console.log(`DELETE itinerarydestinations. ID: ${data.delete_id} `);
         res.redirect('/itinerarydestinations');
     } catch (error) {
         console.error('Error executing queries:', error);
@@ -522,17 +516,15 @@ app.post('/airlines/create', async function (req, res) {
     try {
         let data = req.body;
 
-        if (isNaN(parseInt(data.create_website)))
-            data.create_website = null;
-        if (isNaN(parseInt(data.create_phone)))
-            data.create_phone = null;
+        if (data.create_website === '') data.create_website = null;
+        if (data.create_phone === '') data.create_phone = null;
 
         const query1 = `CALL sp_CreateAirline(?, ?, ?, @new_id);`;
 
         const [[[rows]]] = await db.query(query1, [
             data.create_name,
             data.create_website,
-            data.create_phone,
+            data.create_phone
         ]);
 
         console.log(`CREATE airlines. ID: ${rows.new_id} ` +
@@ -552,13 +544,11 @@ app.post('/airlines/update', async function (req, res) {
     try {
         const data = req.body;
 
-        if (isNaN(parseInt(data.update_website)))
-            data.update_website = null;
-        if (isNaN(parseInt(data.update_phone)))
-            data.update_phone = null;
+        if (data.update_website === '') data.update_website = null;
+        if (data.update_phone === '') data.update_phone = null;
 
         const query1 = 'CALL sp_UpdateAirline(?, ?, ?, ?);';
-        const query2 = 'SELECT airlineName FROM Airlines WHERE id = ?;';
+        const query2 = 'SELECT airlineName FROM Airlines WHERE airlineID = ?;';
         await db.query(query1, [
             data.update_id,
             data.update_name,
@@ -586,10 +576,10 @@ app.post('/airlines/delete', async function (req, res) {
         let data = req.body;
 
         const query1 = `CALL sp_DeleteAirline(?);`;
-        await db.query(query1, [data.delete_airline_id]);
+        await db.query(query1, [data.delete_id]);
 
-        console.log(`DELETE airlines. ID: ${data.delete_airline_id} ` +
-            `Name: ${data.delete_airline_name}`
+        console.log(`DELETE airlines. ID: ${data.delete_id} ` +
+            `Name: ${data.delete_name}`
         );
 
         res.redirect('/airlines');
@@ -620,9 +610,8 @@ app.get('/airports', async (req, res) => {
 app.post('/airports/create', async function (req, res) {
     try {
         let data = req.body;
-
-        if (isNaN(parseInt(data.create_timezone)))
-            data.create_timezone = null;
+        
+        if (data.create_timezone === '') data.create_timezone = null;
 
         const query1 = `CALL sp_CreateAirport(?, ?, ?, ?, ?, @new_id);`;
 
@@ -651,15 +640,16 @@ app.post('/airports/update', async function (req, res) {
     try {
         const data = req.body;
 
-        if (isNaN(parseInt(data.update_timezone)))
-            data.update_timezone = null;
+        if (data.update_timezone === '') data.update_timezone = null;
 
         const query1 = 'CALL sp_UpdateAirport(?, ?, ?, ?, ?);';
-        const query2 = 'SELECT airportName FROM Airports WHERE id = ?;';
+        const query2 = 'SELECT airportName FROM Airports WHERE airlineID = ?;';
         await db.query(query1, [
             data.update_id,
             data.update_name,
-            data.update_website,
+            data.update_iata,
+            data.update_city,
+            data.update_country,
             data.update_timezone,
         ]);
         const [[rows]] = await db.query(query2, [data.update_id]);
@@ -757,7 +747,7 @@ app.post('/flights/update', async function (req, res) {
             data.update_notes = null;
 
         const query1 = 'CALL sp_UpdateFlights(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
-        const query2 = 'SELECT bookingReferenceNum FROM Flights WHERE id = ?;';
+        const query2 = 'SELECT bookingReferenceNum FROM Flights WHERE flightID = ?;';
         await db.query(query1, [
             data.update_id,
             data.update_i_id,
